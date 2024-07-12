@@ -4,10 +4,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.nightcore.config.FileConfig;
-import su.nightexpress.nightcore.util.placeholder.Placeholder;
+import su.nightexpress.nightcore.util.placeholder.AdvancedPlaceholder;
 import su.nightexpress.nightcore.util.placeholder.PlaceholderMap;
 
-public class Milestone implements Placeholder {
+public class Milestone implements AdvancedPlaceholder {
 
     private final Crate crate;
     private final PlaceholderMap placeholderMap;

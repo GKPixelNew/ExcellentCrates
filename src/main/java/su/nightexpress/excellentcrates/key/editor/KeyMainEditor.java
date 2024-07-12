@@ -67,7 +67,7 @@ public class KeyMainEditor extends EditorMenu<CratesPlugin, CrateKey> {
         });
 
         this.getItems().forEach(menuItem -> menuItem.getOptions().addDisplayModifier((viewer, item) -> {
-            ItemReplacer.replace(item, this.getObject(viewer).replacePlaceholders());
+            ItemReplacer.replace(item, this.getObject(viewer).replacePlaceholders(viewer.getPlayer()));
         }));
     }
 

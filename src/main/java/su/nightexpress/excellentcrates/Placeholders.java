@@ -1,5 +1,6 @@
 package su.nightexpress.excellentcrates;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -160,7 +161,7 @@ public class Placeholders extends su.nightexpress.nightcore.util.Placeholders {
                     return Lang.OTHER_FREE.getString();
                 }
 
-                return crate.getOpenCostMap().entrySet().stream().map(entry -> entry.getKey().format(entry.getValue()))
+                return crate.getOpenCostMap().entrySet().stream().map(entry -> entry.getKey().format(Bukkit.getConsoleSender(), entry.getValue()))
                     .collect(Collectors.joining(", "));
             })
             .add(CRATE_OPEN_COOLDOWN, () -> {

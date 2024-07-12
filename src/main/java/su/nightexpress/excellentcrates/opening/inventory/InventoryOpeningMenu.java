@@ -98,7 +98,7 @@ public class InventoryOpeningMenu extends ConfigMenu<CratesPlugin> {
 
         Crate crate = opening.getCrate();
 
-        options.setTitle(crate.replacePlaceholders().apply(options.getTitle()));
+        options.setTitle(crate.replacePlaceholders(viewer.getPlayer()).apply(options.getTitle()));
     }
 
     @Override

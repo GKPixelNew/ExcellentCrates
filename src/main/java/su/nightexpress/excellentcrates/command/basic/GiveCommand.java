@@ -65,14 +65,14 @@ public class GiveCommand extends AbstractCommand<CratesPlugin> {
         if (!result.hasFlag(CommandFlags.SILENT)) {
             Lang.COMMAND_GIVE_NOTIFY.getMessage()
                 .replace(Placeholders.GENERIC_AMOUNT, amount)
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(sender))
                 .send(player);
         }
         if (sender != player) {
             Lang.COMMAND_GIVE_DONE.getMessage()
                 .replace(Placeholders.forPlayer(player))
                 .replace(Placeholders.GENERIC_AMOUNT, amount)
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(sender))
                 .send(sender);
         }
     }

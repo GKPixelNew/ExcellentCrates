@@ -92,7 +92,7 @@ public class DropKeyCommand extends AbstractCommand<CratesPlugin> {
         if (!plugin.getKeyManager().spawnKey(key, location)) return;
 
         Lang.COMMAND_DROP_KEY_DONE.getMessage()
-            .replace(key.replacePlaceholders())
+            .replace(key.replacePlaceholders(sender))
             .replace(Placeholders.forLocation(location))
             .send(sender);
     }

@@ -19,7 +19,7 @@ import su.nightexpress.nightcore.util.ItemUtil;
 import su.nightexpress.nightcore.util.Players;
 import su.nightexpress.nightcore.util.Plugins;
 import su.nightexpress.nightcore.util.StringUtil;
-import su.nightexpress.nightcore.util.placeholder.Placeholder;
+import su.nightexpress.nightcore.util.placeholder.AdvancedPlaceholder;
 import su.nightexpress.nightcore.util.placeholder.PlaceholderMap;
 import su.nightexpress.nightcore.util.text.NightMessage;
 
@@ -31,7 +31,7 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class Reward implements Weighted, Placeholder {
+public class Reward implements Weighted, AdvancedPlaceholder {
 
     private final CratesPlugin   plugin;
     private final Crate          crate;
@@ -326,15 +326,15 @@ public class Reward implements Weighted, Placeholder {
         this.giveContent(player);
 
         Lang.CRATE_OPEN_REWARD_INFO.getMessage()
-            .replace(this.getCrate().replacePlaceholders())
-            .replace(this.replacePlaceholders())
+            .replace(this.getCrate().replacePlaceholders(player))
+            .replace(this.replacePlaceholders(player))
             .send(player);
 
         if (this.isBroadcast()) {
             Lang.CRATE_OPEN_REWARD_BROADCAST.getMessage()
                 .replace(Placeholders.forPlayer(player))
-                .replace(this.getCrate().replacePlaceholders())
-                .replace(this.replacePlaceholders())
+                .replace(this.getCrate().replacePlaceholders(player))
+                .replace(this.replacePlaceholders(player))
                 .broadcast();
         }
 

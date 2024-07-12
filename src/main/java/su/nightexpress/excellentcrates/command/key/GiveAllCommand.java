@@ -66,7 +66,7 @@ class GiveAllCommand extends AbstractCommand<CratesPlugin> {
             if (!silent) {
                 Lang.COMMAND_KEY_GIVE_NOTIFY.getMessage()
                     .replace(Placeholders.GENERIC_AMOUNT, amount)
-                    .replace(key.replacePlaceholders())
+                    .replace(key.replacePlaceholders(sender))
                     .send(player);
             }
         });
@@ -82,7 +82,7 @@ class GiveAllCommand extends AbstractCommand<CratesPlugin> {
 
         Lang.COMMAND_KEY_GIVE_ALL_DONE.getMessage()
             .replace(Placeholders.GENERIC_AMOUNT, amount)
-            .replace(key.replacePlaceholders())
+            .replace(key.replacePlaceholders(sender))
             .send(sender);
     }
 }

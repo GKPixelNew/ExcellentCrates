@@ -173,7 +173,7 @@ public class MilestonesMenu extends ConfigMenu<CratesPlugin> implements AutoFill
     public void onPrepare(@NotNull MenuViewer viewer, @NotNull MenuOptions options) {
         CrateSource source = this.getLink(viewer.getPlayer());
 
-        options.setTitle(source.getCrate().replacePlaceholders().apply(options.getTitle()));
+        options.setTitle(source.getCrate().replacePlaceholders(viewer.getPlayer()).apply(options.getTitle()));
 
         this.autoFill(viewer);
     }

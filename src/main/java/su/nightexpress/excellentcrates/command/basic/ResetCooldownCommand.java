@@ -59,7 +59,7 @@ public class ResetCooldownCommand extends AbstractCommand<CratesPlugin> {
 
         Lang.COMMAND_RESET_COOLDOWN_DONE.getMessage()
             .replace(Placeholders.PLAYER_NAME, user.getName())
-            .replace(crate.replacePlaceholders())
+            .replace(crate.replacePlaceholders(sender))
             .send(sender);
     }
 }

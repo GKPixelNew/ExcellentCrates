@@ -85,14 +85,14 @@ abstract class ManageCommand extends AbstractCommand<CratesPlugin> {
         if (target != null && !result.hasFlag(CommandFlags.SILENT)) {
             this.messageNotify
                 .replace(Placeholders.GENERIC_AMOUNT, amount)
-                .replace(key.replacePlaceholders())
+                .replace(key.replacePlaceholders(sender))
                 .send(target);
         }
 
         this.messageDone
             .replace(Placeholders.PLAYER_NAME, user.getName())
             .replace(Placeholders.GENERIC_AMOUNT, amount)
-            .replace(key.replacePlaceholders())
+            .replace(key.replacePlaceholders(sender))
             .send(sender);
     }
 }

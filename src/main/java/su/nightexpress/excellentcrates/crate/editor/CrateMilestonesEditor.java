@@ -57,7 +57,7 @@ public class CrateMilestonesEditor extends EditorMenu<CratesPlugin, Crate> imple
             Reward reward = milestone.getReward();
             ItemStack item = new ItemStack(reward == null ? ItemUtil.getSkinHead(Placeholders.SKIN_QUESTION_MARK) : reward.getPreview());
             ItemReplacer.create(item).readLocale(EditorLang.MILESTONE_OBJECT).hideFlags().trimmed()
-                .replace(milestone.replacePlaceholders())
+                .replace(milestone.replacePlaceholders(viewer.getPlayer()))
                 .writeMeta();
             return item;
         });

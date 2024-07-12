@@ -490,7 +490,7 @@ public class CrateManager extends AbstractManager<CratesPlugin> {
         }
 
         if (!settings.isForce() && player.getInventory().firstEmpty() == -1) {
-            Lang.CRATE_OPEN_ERROR_INVENTORY_SPACE.getMessage().replace(crate.replacePlaceholders()).send(player);
+            Lang.CRATE_OPEN_ERROR_INVENTORY_SPACE.getMessage().replace(crate.replacePlaceholders(player)).send(player);
             return false;
         }
 
@@ -499,20 +499,20 @@ public class CrateManager extends AbstractManager<CratesPlugin> {
             long expireDate = user.getCrateCooldown(crate);
             (expireDate < 0 ? Lang.CRATE_OPEN_ERROR_COOLDOWN_ONE_TIMED : Lang.CRATE_OPEN_ERROR_COOLDOWN_TEMPORARY).getMessage()
                 .replace(Placeholders.GENERIC_TIME, TimeUtil.formatDuration(expireDate))
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(player))
                 .send(player);
             return false;
         }
 
         if (!settings.isForce() && crate.isKeyRequired()) {
             if (!this.plugin.getKeyManager().hasKey(player, crate)) {
-                Lang.CRATE_OPEN_ERROR_NO_KEY.getMessage().replace(crate.replacePlaceholders()).send(player);
+                Lang.CRATE_OPEN_ERROR_NO_KEY.getMessage().replace(crate.replacePlaceholders(player)).send(player);
                 return false;
             }
             if (Config.CRATE_HOLD_KEY_TO_OPEN.get() && crate.isAllPhysicalKeys()) {
                 ItemStack main = player.getInventory().getItemInMainHand();
                 if (!this.plugin.getKeyManager().isKey(main, crate)) {
-                    Lang.CRATE_OPEN_ERROR_NO_HOLD_KEY.getMessage().replace(crate.replacePlaceholders()).send(player);
+                    Lang.CRATE_OPEN_ERROR_NO_HOLD_KEY.getMessage().replace(crate.replacePlaceholders(player)).send(player);
                     return false;
                 }
             }
@@ -524,15 +524,15 @@ public class CrateManager extends AbstractManager<CratesPlugin> {
                 double amount = entry.getValue();
                 if (currency.getHandler().getBalance(player) < amount) {
                     Lang.CRATE_OPEN_ERROR_CANT_AFFORD.getMessage()
-                        .replace(Placeholders.GENERIC_AMOUNT, currency.format(amount))
-                        .replace(crate.replacePlaceholders()).send(player);
+                        .replace(Placeholders.GENERIC_AMOUNT, currency.format(player, amount))
+                        .replace(crate.replacePlaceholders(player)).send(player);
                     return false;
                 }
             }
         }
 
         if (crate.getRewards(player).isEmpty()) {
-            Lang.CRATE_OPEN_ERROR_NO_REWARDS.getMessage().replace(crate.replacePlaceholders()).send(player);
+            Lang.CRATE_OPEN_ERROR_NO_REWARDS.getMessage().replace(crate.replacePlaceholders(player)).send(player);
             return false;
         }
 
@@ -592,9 +592,9 @@ public class CrateManager extends AbstractManager<CratesPlugin> {
             if (reward != null) {
                 reward.giveContent(player);
                 Lang.CRATE_OPEN_MILESTONE_COMPLETED.getMessage()
-                    .replace(crate.replacePlaceholders())
+                    .replace(crate.replacePlaceholders(player))
                     .replace(Placeholders.MILESTONE_OPENINGS, NumberUtil.format(milestones))
-                    .replace(reward.replacePlaceholders())
+                    .replace(reward.replacePlaceholders(player))
                     .send(player);
             }
 

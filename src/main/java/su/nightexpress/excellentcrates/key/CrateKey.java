@@ -4,18 +4,18 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import su.nightexpress.excellentcrates.CratesPlugin;
-import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.Placeholders;
+import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.nightcore.config.FileConfig;
 import su.nightexpress.nightcore.manager.AbstractFileData;
 import su.nightexpress.nightcore.util.PDCUtil;
-import su.nightexpress.nightcore.util.placeholder.Placeholder;
+import su.nightexpress.nightcore.util.placeholder.AdvancedPlaceholder;
 import su.nightexpress.nightcore.util.placeholder.PlaceholderMap;
 import su.nightexpress.nightcore.util.text.NightMessage;
 
 import java.io.File;
 
-public class CrateKey extends AbstractFileData<CratesPlugin> implements Placeholder {
+public class CrateKey extends AbstractFileData<CratesPlugin> implements AdvancedPlaceholder {
 
     private String    name;
     private boolean   virtual;

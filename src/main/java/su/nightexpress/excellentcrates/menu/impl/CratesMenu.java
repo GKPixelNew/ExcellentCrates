@@ -59,7 +59,7 @@ public class CratesMenu extends ConfigMenu<CratesPlugin> {
             ItemReplacer.create(icon).readMeta().trimmed().hideFlags()
                 .setDisplayName(this.crateName)
                 .setLore(this.crateLore)
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(viewer.getPlayer()))
                 .replace(GENERIC_KEYS, () -> NumberUtil.format(plugin.getKeyManager().getKeysAmount(player, crate)))
                 .writeMeta();
 

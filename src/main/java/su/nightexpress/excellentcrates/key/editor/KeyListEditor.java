@@ -58,7 +58,7 @@ public class KeyListEditor extends EditorMenu<CratesPlugin, KeyManager> implemen
         autoFill.setItemCreator(key -> {
             ItemStack item = new ItemStack(key.getItem());
             ItemReplacer.create(item).readLocale(EditorLang.KEY_OBJECT).hideFlags().trimmed()
-                .replace(key.replacePlaceholders())
+                .replace(key.replacePlaceholders(viewer.getPlayer()))
                 .writeMeta();
             return item;
         });

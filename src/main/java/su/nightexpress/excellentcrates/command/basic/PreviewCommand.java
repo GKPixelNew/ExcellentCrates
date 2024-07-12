@@ -67,7 +67,7 @@ public class PreviewCommand extends AbstractCommand<CratesPlugin> {
         if (sender != player) {
             Lang.COMMAND_PREVIEW_DONE_OTHERS.getMessage()
                 .replace(Placeholders.forPlayer(player))
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(sender))
                 .send(sender);
         }
     }

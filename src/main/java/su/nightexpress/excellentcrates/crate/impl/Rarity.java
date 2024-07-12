@@ -7,11 +7,11 @@ import su.nightexpress.excellentcrates.api.opening.Weighted;
 import su.nightexpress.nightcore.config.ConfigValue;
 import su.nightexpress.nightcore.config.FileConfig;
 import su.nightexpress.nightcore.util.StringUtil;
-import su.nightexpress.nightcore.util.placeholder.Placeholder;
+import su.nightexpress.nightcore.util.placeholder.AdvancedPlaceholder;
 import su.nightexpress.nightcore.util.placeholder.PlaceholderMap;
 import su.nightexpress.nightcore.util.text.NightMessage;
 
-public class Rarity implements Weighted, Placeholder {
+public class Rarity implements Weighted, AdvancedPlaceholder {
 
     private final CratesPlugin   plugin;
     private final String         id;

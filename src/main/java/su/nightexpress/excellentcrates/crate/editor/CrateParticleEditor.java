@@ -204,7 +204,7 @@ public class CrateParticleEditor extends EditorMenu<CratesPlugin, Crate> impleme
     protected void onPrepare(@NotNull MenuViewer viewer, @NotNull MenuOptions options) {
         Crate crate = this.getObject(viewer);
 
-        options.setTitle(crate.replacePlaceholders().apply(options.getTitle()));
+        options.setTitle(crate.replacePlaceholders(viewer.getPlayer()).apply(options.getTitle()));
     }
 
     @Override

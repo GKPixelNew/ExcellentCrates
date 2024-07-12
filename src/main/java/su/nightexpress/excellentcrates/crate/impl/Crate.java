@@ -1,15 +1,16 @@
 package su.nightexpress.excellentcrates.crate.impl;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import su.nightexpress.excellentcrates.CratesPlugin;
-import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.Placeholders;
 import su.nightexpress.excellentcrates.api.currency.Currency;
 import su.nightexpress.excellentcrates.config.Config;
+import su.nightexpress.excellentcrates.config.Keys;
 import su.nightexpress.excellentcrates.config.Perms;
 import su.nightexpress.excellentcrates.crate.effect.EffectModel;
 import su.nightexpress.excellentcrates.hologram.HologramHandler;
@@ -20,7 +21,7 @@ import su.nightexpress.nightcore.config.FileConfig;
 import su.nightexpress.nightcore.manager.AbstractFileData;
 import su.nightexpress.nightcore.util.LocationUtil;
 import su.nightexpress.nightcore.util.PDCUtil;
-import su.nightexpress.nightcore.util.placeholder.Placeholder;
+import su.nightexpress.nightcore.util.placeholder.AdvancedPlaceholder;
 import su.nightexpress.nightcore.util.placeholder.PlaceholderMap;
 import su.nightexpress.nightcore.util.random.Rnd;
 import su.nightexpress.nightcore.util.text.NightMessage;
@@ -33,7 +34,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Crate extends AbstractFileData<CratesPlugin> implements Placeholder {
+public class Crate extends AbstractFileData<CratesPlugin> implements AdvancedPlaceholder {
 
     private final Set<CrateKey>                 keys;
     private final Set<Location>                 blockLocations;
@@ -343,7 +344,7 @@ public class Crate extends AbstractFileData<CratesPlugin> implements Placeholder
     @NotNull
     public List<String> getHologramText() {
         List<String> text = new ArrayList<>(Config.CRATE_HOLOGRAM_TEMPLATES.get().getOrDefault(this.getHologramTemplate(), Collections.emptyList()));
-        text.replaceAll(this.replacePlaceholders());
+        text.replaceAll(this.replacePlaceholders(Bukkit.getConsoleSender()));
         return NightMessage.asLegacy(text);
     }
 

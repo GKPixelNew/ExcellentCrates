@@ -70,13 +70,13 @@ public class ResetLimitCommand extends AbstractCommand<CratesPlugin> {
         }
         else {
             user.removeRewardWinLimit(crate.getId(), reward.getId());
-            message = Lang.COMMAND_RESET_LIMIT_DONE_REWARD.getMessage().replace(reward.replacePlaceholders());
+            message = Lang.COMMAND_RESET_LIMIT_DONE_REWARD.getMessage().replace(reward.replacePlaceholders(sender));
         }
         this.plugin.getUserManager().saveAsync(user);
 
         message
             .replace(Placeholders.PLAYER_NAME, user.getName())
-            .replace(crate.replacePlaceholders())
+            .replace(crate.replacePlaceholders(sender))
             .send(sender);
     }
 }

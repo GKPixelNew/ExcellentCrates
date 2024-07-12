@@ -58,12 +58,12 @@ public class OpenForCommand extends AbstractCommand<CratesPlugin> {
         }
 
         if (!result.hasFlag(CommandFlags.SILENT)) {
-            Lang.COMMAND_OPEN_FOR_NOTIFY.getMessage().replace(crate.replacePlaceholders()).send(player);
+            Lang.COMMAND_OPEN_FOR_NOTIFY.getMessage().replace(crate.replacePlaceholders(sender)).send(player);
         }
         if (sender != player) {
             Lang.COMMAND_OPEN_FOR_DONE.getMessage()
                 .replace(Placeholders.forPlayer(player))
-                .replace(crate.replacePlaceholders())
+                .replace(crate.replacePlaceholders(sender))
                 .send(sender);
         }
 

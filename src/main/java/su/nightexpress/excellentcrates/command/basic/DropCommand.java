@@ -92,7 +92,7 @@ public class DropCommand extends AbstractCommand<CratesPlugin> {
         if (!plugin.getCrateManager().spawnCrate(crate, location)) return;
 
         Lang.COMMAND_DROP_DONE.getMessage()
-            .replace(crate.replacePlaceholders())
+            .replace(crate.replacePlaceholders(sender))
             .replace(Placeholders.forLocation(location))
             .send(sender);
     }
