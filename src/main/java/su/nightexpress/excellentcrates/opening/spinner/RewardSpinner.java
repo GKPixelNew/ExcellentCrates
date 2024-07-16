@@ -13,14 +13,15 @@ import su.nightexpress.excellentcrates.crate.impl.Rarity;
 import su.nightexpress.excellentcrates.crate.impl.Reward;
 import su.nightexpress.excellentcrates.opening.inventory.InventoryOpening;
 import su.nightexpress.excellentcrates.opening.inventory.InventorySpinner;
-import su.nightexpress.nightcore.util.Lists;
-import su.nightexpress.nightcore.util.PDCUtil;
+import su.nightexpress.nightcore.util.*;
 import su.nightexpress.nightcore.util.random.Rnd;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static su.nightexpress.excellentcrates.Placeholders.GENERIC_KEYS;
 
 public class RewardSpinner extends InventorySpinner {
 
@@ -78,6 +79,10 @@ public class RewardSpinner extends InventorySpinner {
 
         ItemStack item = reward.getPreview();
         PDCUtil.set(item, Keys.rewardId, reward.getId());
+        ItemReplacer.create(item).readMeta().trimmed()
+                .replace(crate.replacePlaceholders(this.opening.getPlayer()))
+                .replace(GENERIC_KEYS, () -> NumberUtil.format(plugin.getKeyManager().getKeysAmount(player, crate)))
+                .writeMeta();
 
         return item;
     }
