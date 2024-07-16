@@ -344,7 +344,12 @@ public class Crate extends AbstractFileData<CratesPlugin> implements AdvancedPla
     @NotNull
     public List<String> getHologramText() {
         List<String> text = new ArrayList<>(Config.CRATE_HOLOGRAM_TEMPLATES.get().getOrDefault(this.getHologramTemplate(), Collections.emptyList()));
-        text.replaceAll(this.replacePlaceholders(Bukkit.getConsoleSender()));
+        if (text.isEmpty()) {
+            text.addAll(Arrays.asList(this.getHologramTemplate().split("\n")));
+        }
+        //We want our own hologram provider to do this instead
+        //noinspection deprecation
+        text.replaceAll(this.replacePlaceholders());
         return NightMessage.asLegacy(text);
     }
 
@@ -545,7 +550,7 @@ public class Crate extends AbstractFileData<CratesPlugin> implements AdvancedPla
     }
 
     public void setHologramTemplate(@NotNull String hologramTemplate) {
-        this.hologramTemplate = hologramTemplate.toLowerCase();
+        this.hologramTemplate = hologramTemplate;
     }
 
     public double getHologramYOffset() {
