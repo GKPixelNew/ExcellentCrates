@@ -443,7 +443,7 @@ public class Crate implements ConfigBacked {
     @NotNull
     public List<String> getHologramText() {
         HologramTemplate template = Config.getHologramTemplate(this.hologramTemplateId);
-        return template == null ? Collections.emptyList() : template.getText();
+        return template == null ? Arrays.asList(this.hologramTemplateId.split("\n")) : template.getText();
     }
 
     public boolean hasRewards(@NotNull Player player) {
